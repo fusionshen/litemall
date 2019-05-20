@@ -27,7 +27,7 @@ services:
     - /opt1/mysql/init-sql:/docker-entrypoint-initdb.d
     - /etc/localtime:/etc/localtime
     environment:
-      MYSQL_ROOT_PASSWORD: xxxxxx
+      MYSQL_ROOT_PASSWORD: 123456
     networks:
       vpcbr:
         ipv4_address: 10.17.0.11
