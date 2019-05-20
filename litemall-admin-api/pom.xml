@@ -34,6 +34,7 @@
     </dependencies>
 
     <build>
+      <finalName>litemall-admin-api</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
