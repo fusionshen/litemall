@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-Vue.use(Router)
+Vue.use(Router) // https://segmentfault.com/a/1190000012296163 全局使用
 
 /* Layout */
-import Layout from '@/views/layout/Layout'
+import Layout from '@/layout' // 路由需要layout
 
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
@@ -15,7 +15,7 @@ import Layout from '@/views/layout/Layout'
 * alwaysShow: true               if set true, will always show the root menu, whatever its child routes length
 *                                if not set alwaysShow, only more than one route under the children
 *                                it will becomes nested mode, otherwise not show the root menu
-* redirect: noredirect           if `redirect:noredirect` will no redirect in the breadcrumb
+* redirect: noRedirect           if `redirect:noRedirect` will no redirect in the breadcrumb
 * name:'router-name'             the name is used by <keep-alive> (must set!!!)
 * meta : {
     perms: ['GET /aaa','POST /bbb']     will control the page perms (you can set multiple perms)
@@ -24,7 +24,7 @@ import Layout from '@/views/layout/Layout'
     noCache: true                if true ,the page will no be cached(default is false)
   }
 **/
-export const constantRouterMap = [
+export const constantRoutes = [
   {
     path: '/redirect',
     component: Layout,
@@ -65,23 +65,17 @@ export const constantRouterMap = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'dashboard', noCache: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   }
 ]
 
-export default new Router({
-  // mode: 'history', // require service support
-  scrollBehavior: () => ({ y: 0 }),
-  routes: constantRouterMap
-})
-
-export const asyncRouterMap = [
+export const asyncRoutes = [
   {
     path: '/user',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'userManage',
     meta: {
@@ -155,7 +149,7 @@ export const asyncRouterMap = [
   {
     path: '/mall',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'mallManage',
     meta: {
@@ -228,7 +222,7 @@ export const asyncRouterMap = [
   {
     path: '/goods',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'goodsManage',
     meta: {
@@ -282,7 +276,7 @@ export const asyncRouterMap = [
   {
     path: '/promotion',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'promotionManage',
     meta: {
@@ -357,7 +351,7 @@ export const asyncRouterMap = [
   {
     path: '/sys',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'sysManage',
     meta: {
@@ -411,7 +405,7 @@ export const asyncRouterMap = [
   {
     path: '/config',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'configManage',
     meta: {
@@ -465,7 +459,7 @@ export const asyncRouterMap = [
   {
     path: '/stat',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'statManage',
     meta: {
@@ -508,7 +502,7 @@ export const asyncRouterMap = [
   {
     path: 'external-link',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     name: 'externalLink',
     meta: {
@@ -549,7 +543,7 @@ export const asyncRouterMap = [
   {
     path: '/profile',
     component: Layout,
-    redirect: 'noredirect',
+    redirect: 'noRedirect',
     alwaysShow: true,
     children: [
       {
@@ -561,6 +555,22 @@ export const asyncRouterMap = [
     ],
     hidden: true
   },
-
+  // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]
+
+const createRouter = () => new Router({
+  // mode: 'history', // require service support
+  scrollBehavior: () => ({ y: 0 }),
+  routes: constantRoutes
+})
+
+const router = createRouter()
+
+// Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
+
+export default router

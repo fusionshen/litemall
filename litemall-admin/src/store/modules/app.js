@@ -1,59 +1,66 @@
 import Cookies from 'js-cookie'
 
-const app = {
-  state: {
-    sidebar: {
-      opened: !+Cookies.get('sidebarStatus'),
-      withoutAnimation: false
-    },
-    device: 'desktop',
-    language: Cookies.get('language') || 'en',
-    size: Cookies.get('size') || 'medium'
+const state = {
+  sidebar: {
+    opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+    withoutAnimation: false
   },
-  mutations: {
-    TOGGLE_SIDEBAR: state => {
-      if (state.sidebar.opened) {
-        Cookies.set('sidebarStatus', 1)
-      } else {
-        Cookies.set('sidebarStatus', 0)
-      }
-      state.sidebar.opened = !state.sidebar.opened
-      state.sidebar.withoutAnimation = false
-    },
-    CLOSE_SIDEBAR: (state, withoutAnimation) => {
+  device: 'desktop',
+  size: Cookies.get('size') || 'medium'
+}
+
+/**
+ * mutations:
+ * 变异，转变，通过commit来修改this.&store.xxx的值
+ * https://baijiahao.baidu.com/s?id=1618794879569468435&wfr=spider&for=pc
+ */
+const mutations = {
+  TOGGLE_SIDEBAR: state => {
+    state.sidebar.opened = !state.sidebar.opened
+    state.sidebar.withoutAnimation = false
+    if (state.sidebar.opened) {
       Cookies.set('sidebarStatus', 1)
-      state.sidebar.opened = false
-      state.sidebar.withoutAnimation = withoutAnimation
-    },
-    TOGGLE_DEVICE: (state, device) => {
-      state.device = device
-    },
-    SET_LANGUAGE: (state, language) => {
-      state.language = language
-      Cookies.set('language', language)
-    },
-    SET_SIZE: (state, size) => {
-      state.size = size
-      Cookies.set('size', size)
+    } else {
+      Cookies.set('sidebarStatus', 0)
     }
   },
-  actions: {
-    toggleSideBar({ commit }) {
-      commit('TOGGLE_SIDEBAR')
-    },
-    closeSideBar({ commit }, { withoutAnimation }) {
-      commit('CLOSE_SIDEBAR', withoutAnimation)
-    },
-    toggleDevice({ commit }, device) {
-      commit('TOGGLE_DEVICE', device)
-    },
-    setLanguage({ commit }, language) {
-      commit('SET_LANGUAGE', language)
-    },
-    setSize({ commit }, size) {
-      commit('SET_SIZE', size)
-    }
+  CLOSE_SIDEBAR: (state, withoutAnimation) => {
+    Cookies.set('sidebarStatus', 0)
+    state.sidebar.opened = false
+    state.sidebar.withoutAnimation = withoutAnimation
+  },
+  TOGGLE_DEVICE: (state, device) => {
+    state.device = device
+  },
+  SET_SIZE: (state, size) => {
+    state.size = size
+    Cookies.set('size', size)
   }
 }
 
-export default app
+/**
+ * actions:
+ * 官方并不介意我们这样直接去修改store里面的值，而是让我们去提交一个actions，在actions中提交mutation再去修改状态值
+ * 实践中，我们会经常会用到 ES2015 的 参数解构 来简化代码（特别是我们需要调用 commit 很多次的时候）
+ */
+const actions = {
+  toggleSideBar({ commit }) {
+    commit('TOGGLE_SIDEBAR')
+  },
+  closeSideBar({ commit }, { withoutAnimation }) {
+    commit('CLOSE_SIDEBAR', withoutAnimation)
+  },
+  toggleDevice({ commit }, device) {
+    commit('TOGGLE_DEVICE', device)
+  },
+  setSize({ commit }, size) {
+    commit('SET_SIZE', size)
+  }
+}
+
+export default {
+  namespaced: true,
+  state,
+  mutations,
+  actions
+}
