@@ -1,7 +1,6 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 const user = require('../../utils/user.js');
-
 //获取应用实例
 const app = getApp();
 
@@ -16,13 +15,26 @@ Page({
     banner: [],
     channel: [],
     coupon: [],
-    goodsCount: 0
+    goodsCount: 0,
+    current: 0,
+    animationData: {},
+    animationData2: {},
+  },
+
+  searchBtn: function (e) {
+    var keyword = e.detail.value.replace(/\s+/g, '')
+    if (keyword==''){
+      return;
+    }
+    wx.navigateTo({
+      url: '/pages/search/search?keyword=' + keyword
+    })
   },
 
   onShareAppMessage: function() {
     return {
-      title: 'litemall小程序商场',
-      desc: '开源微信小程序商城',
+      title: '上海新虹桥国际医学中心',
+      desc: '您的健康首选',
       path: '/pages/index/index'
     }
   },
@@ -58,7 +70,16 @@ Page({
     });
   },
   onLoad: function(options) {
-
+    this.stretch(350)
+    var that = this
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          windowWidth: res.windowWidth,
+          windowHeight: res.windowHeight
+        });
+      }
+    });
     // 页面初始化 options为页面跳转所带来的参数
     if (options.scene) {
       //这个scene的值存在则证明首页的开启来源于朋友圈分享的图,同时可以通过获取到的goodId的值跳转导航到对应的详情页
@@ -142,6 +163,38 @@ Page({
       else{
         util.showErrorToast(res.errmsg);
       }
+    })
+  },
+  change(e) {
+    this.setData({
+      current: e.detail.current
+    })
+    this.stretch(350)
+
+    this.shrink(300)
+  },
+  // 收缩
+  stretch(h) {
+    var animation = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+    })
+    this.animation = animation
+    animation.height(h).step()
+    this.setData({
+      animationData: animation.export(),
+    })
+  },
+  // 展开
+  shrink(h) {
+    var animation2 = wx.createAnimation({
+      duration: 1000,
+      timingFunction: 'ease',
+    })
+    this.animation2 = animation2
+    animation2.height(h).step()
+    this.setData({
+      animationData2: animation2.export()
     })
   },
 })

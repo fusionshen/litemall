@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "上海新虹桥国际医学中心",
   "usingComponents": {
     "zan-capsule": "../../lib/zanui-weapp/capsule/index"
   }

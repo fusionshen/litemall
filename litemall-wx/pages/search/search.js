@@ -30,9 +30,12 @@ Page({
       searchStatus: false
     });
   },
-  onLoad: function() {
-
-    this.getSearchKeyword();
+  onLoad: function(options) {
+    if(options.keyword === undefined){
+      this.getSearchKeyword()
+    } else{
+      this.getSearchResult(options.keyword)
+    }
   },
 
   getSearchKeyword() {
@@ -53,6 +56,7 @@ Page({
       keyword: e.detail.value,
       searchStatus: false
     });
+    console.log('0000000');
 
     if (e.detail.value) {
       this.getHelpKeyword();

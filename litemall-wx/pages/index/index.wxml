@@ -1,18 +1,39 @@
 <!--index.wxml-->
 <view class="container">
-<view class="search">
-    <navigator url="/pages/search/search" class="input">
+  <view class="search">
+    <!-- <navigator url="/pages/search/search" class="input">
       <image class="icon"></image>
       <text class="txt">商品搜索, 共{{goodsCount}}款好物</text>
-    </navigator>
+    </navigator> -->
+    <view class="input">
+      <image class="icon"></image>
+      <input class="txt" placeholder="搜索" bindconfirm="searchBtn" confirm-type="search"/>    
+    </view>
   </view>
-  <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+  <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000" indicator-active-color="#ffffff" indicator-color="#dcdcdc">
     <swiper-item wx:for="{{banner}}" wx:key="id">
-      <!-- <navigator url="{{item.link}}"> -->
       <image src="{{item.url}}" background-size="cover"></image>
-      <!-- </navigator> -->
     </swiper-item>
   </swiper>
+ <!-- <view class="hot-swiper" style="padding-top:{{windowHeight/45}}rpx">
+    <swiper circular="true" indicator-dots="true" indicator-active-color="#ffffff" indicator-color="#dcdcdc" autoplay="true" interval="3000" duration="500" previous-margin="{{windowWidth/3.8}}rpx" next-margin="{{windowWidth/3.8}}rpx"  bindchange="change" current="{{current}}">
+      <block wx:for-items="{{banner}}" wx:key="{{index}}">
+        <navigator url="/pages/goods/goods?id={{item.id}}">
+          <swiper-item>
+            <view class="swiper-box" data-index='{{index}}'  animation="{{index == current?animationData2:animationData}}">
+              <form bindsubmit="saveFormId" report-submit='true' class='form_class'>
+                <button formType="submit" class='form_button'>
+                  <image src="{{item.url}}" mode="aspectFill" data-id="{{item.id}}" />
+                </button>
+              </form>
+            </view>
+          </swiper-item>
+        </navigator>
+      </block>
+    </swiper>
+  </view> -->
+
+
   <view class="m-menu">
     <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{channel}}" wx:key="id">
       <image src="{{item.iconUrl}}" background-size="cover"></image>
