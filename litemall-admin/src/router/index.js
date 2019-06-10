@@ -326,6 +326,28 @@ export const asyncRoutes = [
         }
       },
       {
+        path: 'topic-create',
+        component: () => import('@/views/promotion/topicCreate'),
+        name: 'topicCreate',
+        meta: {
+          perms: ['POST /admin/topic/create'],
+          title: '专题创建',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
+        path: 'topic-edit',
+        component: () => import('@/views/promotion/topicEdit'),
+        name: 'topicEdit',
+        meta: {
+          perms: ['GET /admin/topic/read', 'POST /admin/topic/update'],
+          title: '专题编辑',
+          noCache: true
+        },
+        hidden: true
+      },
+      {
         path: 'groupon-rule',
         component: () => import('@/views/promotion/grouponRule'),
         name: 'grouponRule',
