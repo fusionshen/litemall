@@ -6,6 +6,14 @@ Vue.use(Router) // https://segmentfault.com/a/1190000012296163 全局使用
 /* Layout */
 import Layout from '@/layout' // 路由需要layout
 
+/* Router Modules */
+import mallRouter from './modules/mall'
+import goodsRouter from './modules/goods'
+import promotionRouter from './modules/promotion'
+import sysRouter from './modules/sys'
+import configRouter from './modules/config'
+import statRouter from './modules/stat'
+
 /** note: Submenu only appear when children.length>=1
  *  detail see  https://panjiachen.github.io/vue-element-admin-site/guide/essentials/router-and-nav.html
  **/
@@ -57,15 +65,29 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: '',
+    path: '/',
     component: Layout,
-    redirect: 'dashboard',
+    redirect: '/dashboard',
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
         meta: { title: '首页', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
+  {
+    path: '/profile',
+    component: Layout,
+    redirect: '/profile/index',
+    hidden: true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/profile/index'),
+        name: 'Profile',
+        meta: { title: '个人信息', icon: 'user', noCache: true }
       }
     ]
   }
@@ -146,381 +168,13 @@ export const asyncRoutes = [
     ]
   },
 
-  {
-    path: '/mall',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    name: 'mallManage',
-    meta: {
-      title: '商场管理',
-      icon: 'chart'
-    },
-    children: [
-      {
-        path: 'region',
-        component: () => import('@/views/mall/region'),
-        name: 'region',
-        meta: {
-          title: '行政区域',
-          noCache: true
-        }
-      },
-      {
-        path: 'brand',
-        component: () => import('@/views/mall/brand'),
-        name: 'brand',
-        meta: {
-          perms: ['GET /admin/brand/list', 'POST /admin/brand/create', 'GET /admin/brand/read', 'POST /admin/brand/update', 'POST /admin/brand/delete'],
-          title: '品牌制造商',
-          noCache: true
-        }
-      },
-      {
-        path: 'category',
-        component: () => import('@/views/mall/category'),
-        name: 'category',
-        meta: {
-          perms: ['GET /admin/category/list', 'POST /admin/category/create', 'GET /admin/category/read', 'POST /admin/category/update', 'POST /admin/category/delete'],
-          title: '商品类目',
-          noCache: true
-        }
-      },
-      {
-        path: 'order',
-        component: () => import('@/views/mall/order'),
-        name: 'order',
-        meta: {
-          perms: ['GET /admin/order/list', 'GET /admin/order/detail', 'POST /admin/order/ordership', 'POST /admin/order/orderrefund', 'POST /admin/order/orderreply'],
-          title: '订单管理',
-          noCache: true
-        }
-      },
-      {
-        path: 'issue',
-        component: () => import('@/views/mall/issue'),
-        name: 'issue',
-        meta: {
-          perms: ['GET /admin/issue/list', 'POST /admin/issue/create', 'GET /admin/issue/read', 'POST /admin/issue/update', 'POST /admin/issue/delete'],
-          title: '通用问题',
-          noCache: true
-        }
-      },
-      {
-        path: 'keyword',
-        component: () => import('@/views/mall/keyword'),
-        name: 'keyword',
-        meta: {
-          perms: ['GET /admin/keyword/list', 'POST /admin/keyword/create', 'GET /admin/keyword/read', 'POST /admin/keyword/update', 'POST /admin/keyword/delete'],
-          title: '关键词',
-          noCache: true
-        }
-      }
-    ]
-  },
-
-  {
-    path: '/goods',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    name: 'goodsManage',
-    meta: {
-      title: '商品管理',
-      icon: 'chart'
-    },
-    children: [
-      {
-        path: 'list',
-        component: () => import('@/views/goods/list'),
-        name: 'goodsList',
-        meta: {
-          perms: ['GET /admin/goods/list', 'POST /admin/goods/delete'],
-          title: '商品列表',
-          noCache: true
-        }
-      },
-      {
-        path: 'create',
-        component: () => import('@/views/goods/create'),
-        name: 'goodsCreate',
-        meta: {
-          perms: ['POST /admin/goods/create'],
-          title: '商品上架',
-          noCache: true
-        }
-      },
-      {
-        path: 'edit',
-        component: () => import('@/views/goods/edit'),
-        name: 'goodsEdit',
-        meta: {
-          perms: ['GET /admin/goods/detail', 'POST /admin/goods/update', 'POST /admin/goods/catAndBrand'],
-          title: '商品编辑',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'comment',
-        component: () => import('@/views/goods/comment'),
-        name: 'goodsComment',
-        meta: {
-          perms: ['GET /admin/comment/list', 'POST /admin/comment/delete'],
-          title: '商品评论',
-          noCache: true
-        }
-      }
-    ]
-  },
-  {
-    path: '/promotion',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    name: 'promotionManage',
-    meta: {
-      title: '推广管理',
-      icon: 'chart'
-    },
-    children: [
-      {
-        path: 'ad',
-        component: () => import('@/views/promotion/ad'),
-        name: 'ad',
-        meta: {
-          perms: ['GET /admin/ad/list', 'POST /admin/ad/create', 'GET /admin/ad/read', 'POST /admin/ad/update', 'POST /admin/ad/delete'],
-          title: '广告管理',
-          noCache: true
-        }
-      },
-      {
-        path: 'coupon',
-        component: () => import('@/views/promotion/coupon'),
-        name: 'coupon',
-        meta: {
-          perms: ['GET /admin/coupon/list', 'POST /admin/coupon/create', 'POST /admin/coupon/update', 'POST /admin/coupon/delete'],
-          title: '优惠券管理',
-          noCache: true
-        }
-      },
-      {
-        path: 'couponDetail',
-        component: () => import('@/views/promotion/couponDetail'),
-        name: 'couponDetail',
-        meta: {
-          perms: ['GET /admin/coupon/list', 'GET /admin/coupon/listuser'],
-          title: '优惠券详情',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'topic',
-        component: () => import('@/views/promotion/topic'),
-        name: 'topic',
-        meta: {
-          perms: ['GET /admin/topic/list', 'POST /admin/topic/create', 'GET /admin/topic/read', 'POST /admin/topic/update', 'POST /admin/topic/delete'],
-          title: '专题管理',
-          noCache: true
-        }
-      },
-      {
-        path: 'topic-create',
-        component: () => import('@/views/promotion/topicCreate'),
-        name: 'topicCreate',
-        meta: {
-          perms: ['POST /admin/topic/create'],
-          title: '专题创建',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'topic-edit',
-        component: () => import('@/views/promotion/topicEdit'),
-        name: 'topicEdit',
-        meta: {
-          perms: ['GET /admin/topic/read', 'POST /admin/topic/update'],
-          title: '专题编辑',
-          noCache: true
-        },
-        hidden: true
-      },
-      {
-        path: 'groupon-rule',
-        component: () => import('@/views/promotion/grouponRule'),
-        name: 'grouponRule',
-        meta: {
-          perms: ['GET /admin/groupon/list', 'POST /admin/groupon/create', 'POST /admin/groupon/update', 'POST /admin/groupon/delete'],
-          title: '团购规则',
-          noCache: true
-        }
-      },
-      {
-        path: 'groupon-activity',
-        component: () => import('@/views/promotion/grouponActivity'),
-        name: 'grouponActivity',
-        meta: {
-          perms: ['GET /admin/groupon/listRecord'],
-          title: '团购活动',
-          noCache: true
-        }
-      }
-    ]
-  },
-
-  {
-    path: '/sys',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    name: 'sysManage',
-    meta: {
-      title: '系统管理',
-      icon: 'chart'
-    },
-    children: [
-      {
-        path: 'admin',
-        component: () => import('@/views/sys/admin'),
-        name: 'admin',
-        meta: {
-          perms: ['GET /admin/admin/list', 'POST /admin/admin/create', 'POST /admin/admin/update', 'POST /admin/admin/delete'],
-          title: '管理员',
-          noCache: true
-        }
-      },
-      {
-        path: 'log',
-        component: () => import('@/views/sys/log'),
-        name: 'log',
-        meta: {
-          perms: ['GET /admin/log/list'],
-          title: '操作日志',
-          noCache: true
-        }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/sys/role'),
-        name: 'role',
-        meta: {
-          perms: ['GET /admin/role/list', 'POST /admin/role/create', 'POST /admin/role/update', 'POST /admin/role/delete', 'GET /admin/role/permissions', 'POST /admin/role/permissions'],
-          title: '角色管理',
-          noCache: true
-        }
-      },
-      {
-        path: 'os',
-        component: () => import('@/views/sys/os'),
-        name: 'os',
-        meta: {
-          perms: ['GET /admin/storage/list', 'POST /admin/storage/create', 'POST /admin/storage/update', 'POST /admin/storage/delete'],
-          title: '对象存储',
-          noCache: true
-        }
-      }
-    ]
-  },
-
-  {
-    path: '/config',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    name: 'configManage',
-    meta: {
-      title: '配置管理',
-      icon: 'chart'
-    },
-    children: [
-      {
-        path: 'mall',
-        component: () => import('@/views/config/mall'),
-        name: 'configMall',
-        meta: {
-          perms: ['GET /admin/config/mall', 'POST /admin/config/mall'],
-          title: '商场配置',
-          noCache: true
-        }
-      },
-      {
-        path: 'express',
-        component: () => import('@/views/config/express'),
-        name: 'configExpress',
-        meta: {
-          perms: ['GET /admin/config/express', 'POST /admin/config/express'],
-          title: '运费配置',
-          noCache: true
-        }
-      },
-      {
-        path: 'order',
-        component: () => import('@/views/config/order'),
-        name: 'configOrder',
-        meta: {
-          perms: ['GET /admin/config/order', 'POST /admin/config/order'],
-          title: '订单配置',
-          noCache: true
-        }
-      },
-      {
-        path: 'wx',
-        component: () => import('@/views/config/wx'),
-        name: 'configWx',
-        meta: {
-          perms: ['GET /admin/config/wx', 'POST /admin/config/wx'],
-          title: '小程序配置',
-          noCache: true
-        }
-      }
-    ]
-  },
-
-  {
-    path: '/stat',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    name: 'statManage',
-    meta: {
-      title: '统计报表',
-      icon: 'chart'
-    },
-    children: [
-      {
-        path: 'user',
-        component: () => import('@/views/stat/user'),
-        name: 'statUser',
-        meta: {
-          perms: ['GET /admin/stat/user'],
-          title: '用户统计',
-          noCache: true
-        }
-      },
-      {
-        path: 'order',
-        component: () => import('@/views/stat/order'),
-        name: 'statOrder',
-        meta: {
-          perms: ['GET /admin/stat/order'],
-          title: '订单统计',
-          noCache: true
-        }
-      },
-      {
-        path: 'goods',
-        component: () => import('@/views/stat/goods'),
-        name: 'statGoods',
-        meta: {
-          perms: ['GET /admin/stat/goods'],
-          title: '商品统计',
-          noCache: true
-        }
-      }
-    ]
-  },
+  /** when your routing map is too long, you can split it into small modules **/
+  mallRouter,
+  goodsRouter,
+  promotionRouter,
+  sysRouter,
+  configRouter,
+  statRouter,
   {
     path: 'external-link',
     component: Layout,
@@ -562,21 +216,21 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: 'noRedirect',
-    alwaysShow: true,
-    children: [
-      {
-        path: 'password',
-        component: () => import('@/views/profile/password'),
-        name: 'password',
-        meta: { title: '修改密码', noCache: true }
-      }
-    ],
-    hidden: true
-  },
+  // {
+  //   path: '/profile',
+  //   component: Layout,
+  //   redirect: 'noRedirect',
+  //   alwaysShow: true,
+  //   children: [
+  //     {
+  //       path: 'password',
+  //       component: () => import('@/views/profile/password'),
+  //       name: 'password',
+  //       meta: { title: '修改密码', noCache: true }
+  //     }
+  //   ],
+  //   hidden: true
+  // },
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }
 ]

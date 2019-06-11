@@ -39,7 +39,7 @@ services:
     - "18080:8083"
     volumes:
     - /opt1/litemall/:/opt1/litemall
-    - /opt1/storage:/opt1/storage
+    - /opt1/storage:/storage
     - /etc/localtime:/etc/localtime
     command:
     - /bin/sh
@@ -63,7 +63,7 @@ services:
     - "18081:8082"
     volumes:
     - /opt1/litemall/:/opt1/litemall
-    - /opt1/storage:/opt1/storage
+    - /opt1/storage:/storage
     - /etc/localtime:/etc/localtime
     command:
     - /bin/sh

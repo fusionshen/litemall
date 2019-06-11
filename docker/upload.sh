@@ -4,8 +4,8 @@
 
 if [[ "$1" == '1' ]]; then
 
-scp -P $PORT $LITEMALL_HOME/litemall-wx-api/target/litemall-wx-api-exec.jar $USERNAME@$IP:/opt1/litemall/litemall-wx-api-exec.jar
-scp -P $PORT $LITEMALL_HOME/litemall-admin-api/target/litemall-admin-api-exec.jar $USERNAME@$IP:/opt1/litemall/litemall-admin-api-exec.jar
+scp -P $PORT $LITEMALL_HOME/litemall-wx-api/target/litemall-wx-api-0.1.0-exec.jar $USERNAME@$IP:/opt1/litemall/litemall-wx-api-exec.jar
+scp -P $PORT $LITEMALL_HOME/litemall-admin-api/target/litemall-admin-api-0.1.0-exec.jar $USERNAME@$IP:/opt1/litemall/litemall-admin-api-exec.jar
 
 elif [[ "$1" == '2' ]]; then
 scp -P $PORT -r $LITEMALL_HOME/litemall-admin/dist/* $USERNAME@$IP:/opt1/htmladmin

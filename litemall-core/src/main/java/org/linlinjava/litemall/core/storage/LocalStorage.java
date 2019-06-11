@@ -77,12 +77,13 @@ public class LocalStorage implements Storage {
         try {
             Path file = load(filename);
             Resource resource = new UrlResource(file.toUri());
+            System.out.println(resource.getURL());
             if (resource.exists() || resource.isReadable()) {
                 return resource;
             } else {
                 return null;
             }
-        } catch (MalformedURLException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
