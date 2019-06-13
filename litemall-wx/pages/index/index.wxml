@@ -10,7 +10,7 @@
       <input class="txt" placeholder="搜索" bindconfirm="searchBtn" confirm-type="search"/>    
     </view>
   </view>
-  <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000" indicator-active-color="#ffffff" indicator-color="#dcdcdc">
+  <swiper class="banner" indicator-dots="true" circular="true" autoplay="true" interval="3000" duration="1000" indicator-active-color="#ffffff" indicator-color="#dcdcdc">
     <swiper-item wx:for="{{banner}}" wx:key="id">
       <image src="{{item.url}}" background-size="cover"></image>
     </swiper-item>
@@ -32,14 +32,73 @@
       </block>
     </swiper>
   </view> -->
-
-
-  <view class="m-menu">
-    <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{channel}}" wx:key="id">
+  <view class="m-menu" wx:if="{{modules.length > 0}}">
+    <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{modules}}" wx:key="id">
       <image src="{{item.iconUrl}}" background-size="cover"></image>
       <text>{{item.name}}</text>
     </navigator>
   </view>
+
+    <swiper wx:if="{{activities.length > 0}}" class="time-swiper" circular="true" autoplay="true" vertical="true" interval="3000" duration="500">
+        <block wx:for-items="{{activities}}" wx:key="{{id}}">
+          <navigator url="/pages/goods/goods?id={{item.id}}">
+            <swiper-item>
+              <view class="item">
+                <view class="content">
+                  <text class="countdown-name">{{item.name}}</text>
+                  <view class="countdown-content">
+                    <text class="countdown-text">{{item.content}}|</text>
+                    <!-- <text class='tui-conutdown-box'>{{item.day}}</text>天 -->
+                    <text class="countdown-box">{{item.hou}}</text>
+                    <text class="countdown-box">{{item.min}}</text> 
+                    <text class="countdown-box">{{item.sec}}</text>
+                  </view>
+                  <view class="countdown-do">
+                   <text class="countdown-do-text">活动报名</text>
+                   <image class="icon"></image>
+                  </view>
+              </view>
+            </view>
+          </swiper-item>
+        </navigator>
+      </block>
+    </swiper>
+
+    <view class="a-section a-act-hots" wx:if="{{hots.length > 0}}">
+    <view class="h">
+      <view class="title">
+        <view>
+          <navigator url="/pages/groupon/grouponList/grouponList">
+            <text class="txt">热门活动</text>
+          </navigator>
+        </view>
+      </view>
+    </view>
+    <view class="b">
+      <view class="item" wx:for="{{hots}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+        <navigator  url="/pages/goods/goods?id={{item.id}}">
+          <image class="img" src="{{item.picUrl}}"></image>
+          <view class="right">
+            <view class="text">
+              <view class="header">
+                <text class="name">{{item.name}}</text>
+                <!-- <view class='card-agree'  catchtap='toAgree' data-id='{{item.id}}'>
+          <image src="/static/images/{{item.heart?'red_heart.png':'empty_heart.png'}}" class="ripple {{item.heart?'rubberBand':''}}"></image> 
+              </view>   -->
+              </view>
+              <text class="desc">{{item.content}}</text>
+              <view class="wws">
+                <view class="time">{{item.time + ' ' + item.day}}</view>
+                <view class="location">{{item.department}}</view>
+                <view class="{{item.state?'state':'no-state'}}">{{item.state?'立即报名':'报名截止'}}</view>
+              </view>
+            </view>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+
 
   <view class="a-section a-coupon" wx:if="{{coupon.length > 0}}">
     <view class="h">

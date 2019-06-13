@@ -3,6 +3,118 @@ const api = require('../../config/api.js');
 const user = require('../../utils/user.js');
 //获取应用实例
 const app = getApp();
+const modules = [
+  {
+    id: 1005000,
+    name: '机构',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/ahq65ztxcq78df0tk1tn.png'
+  },
+  {
+    id: 1005001,
+    name: '诊疗',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qhu0dtud0htxworyo6eq.png'
+  },
+  {
+    id: 1005002,
+    name: '视频',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/4rpxngi4l8bice6vcay0.png'
+  },
+  {
+    id: 1008000,
+    name: '导航',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qnfxpjnov6io7t8nugsr.png'
+  },
+  {
+    id: 1010000,
+    name: '地图',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qcljvbhdf5f27hmubg1o.png'
+  },
+  {
+    id: 1011000,
+    name: '生活',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/0k2ozl7v5s3wytkj2o3k.png'
+  },
+  {
+    id: 1012000,
+    name: '智慧党建',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/c9h6l36wvcr7h9klw0rz.png'
+  },
+  {
+    id: 1013001,
+    name: '志愿服务',
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/rx5rgbpyjz6da98ee5nk.png'
+  }];
+
+let activities = [
+  {
+    id: 1,
+    name: '健康大讲堂',
+    content: '十点截止',
+    actEndTime: '2019/06/14 10:00:58'
+  },
+  {
+    id: 2,
+    name: '医疗大见面',
+    content: '十点截止',
+    actEndTime: '2019/06/11 10:00:47'
+  },
+  {
+    id: 3,
+    name: '飞翔的天空',
+    content: '十点截止',
+    actEndTime: '2019/06/16 10:00:39'
+  },
+  {
+    id: 4,
+    name: '入驻见面会',
+    content: '十点截止',
+    actEndTime: '2019/06/17 10:00:29'
+  },
+  {
+    id: 5,
+    name: '临时会议',
+    content: '十点截止',
+    actEndTime: '2019/06/12 18:00:47'
+  }];
+
+const hots = [
+  {
+    id: 1,
+    name: '瑜伽大讲堂',
+    content: '知名瑜伽教练现场带您体验瑜伽的奥秘',
+    time: '05/15',
+    day: '周六',
+    department: '医技中心',
+    state: true,
+    heart: true,
+    picUrl: 'http://47.103.46.66:88/wx/storage/fetch/xn09jwhay5hruighoadu.png'
+  },
+  {
+    id: 2,
+    name: '欢乐园区行',
+    content: '园区导游带领闵行一中学生参观新虹桥医学中心，了解园区风貌',
+    time: '05/20',
+    day: '周四',
+    department: '医技中心',
+    state: false,
+    heart: false,
+    picUrl: 'http://47.103.46.66:88/wx/storage/fetch/jqzqerejo7ot12uvi5bv.png'
+  },
+  {
+    id: 3,
+    name: '我只是个测试',
+    content: '我只是个测试用例，用于测试首页活动列表',
+    time: '05/15',
+    day: '周六',
+    department: '医技中心',
+    state: false,
+    heart: true,
+    picUrl: 'http://47.103.46.66:88/wx/storage/fetch/bdo24wq9dywm5pmiqrdh.jpg'
+  }
+
+];
+
+
 
 Page({
   data: {
@@ -19,6 +131,10 @@ Page({
     current: 0,
     animationData: {},
     animationData2: {},
+    modules: modules,
+    activities: [],
+    actEndTimeList: [],
+    hots: hots,
   },
 
   searchBtn: function (e) {
@@ -69,7 +185,80 @@ Page({
       });
     });
   },
+  timeFormat(param) {//小于10的格式化函数
+    return param < 10 ? '0' + param : param;
+  },
+  contentFormat(time,o) {
+    let day = parseInt(time / (60 * 60 * 24)) + 1
+    if (day >= 2){
+      return day +"日后截止"
+    }else{
+      var date = new Date(o.actEndTime);
+      return date.getHours() + "时截止"
+    }
+  },
+  countDown() {//倒计时函数
+    // 获取当前时间，同时得到活动结束时间数组
+    let newTime = new Date().getTime();
+    let endTimeList = this.data.actEndTimeList;
+    let countDownArr = [];
+
+    // 对结束时间进行处理渲染到页面
+    endTimeList.forEach(o => {
+      let endTime = new Date(o.actEndTime).getTime();
+      let obj = null;
+      // 如果活动未结束，对时间进行处理
+      if (endTime - newTime > 0) {
+        let time = (endTime - newTime) / 1000;
+        // 获取天、时、分、秒
+        let day = parseInt(time / (60 * 60 * 24));
+        let hou = parseInt(time % (60 * 60 * 24) / 3600) + day * 24;
+        let min = parseInt(time % (60 * 60 * 24) % 3600 / 60);
+        let sec = parseInt(time % (60 * 60 * 24) % 3600 % 60);
+        obj = {
+          id: o.id,
+          name: o.name,
+          content: this.contentFormat(time,o),
+          day: this.timeFormat(day),
+          hou: this.timeFormat(hou),
+          min: this.timeFormat(min),
+          sec: this.timeFormat(sec)
+        }
+      } else {//活动已结束，全部设置为'00'
+        obj = {
+          id: o.id,
+          name: o.name,
+          content: "活动已结束",
+          day: '00',
+          hou: '00',
+          min: '00',
+          sec: '00'
+        }
+      }
+      countDownArr.push(obj);
+    })
+    // 渲染，然后每隔一秒执行一次倒计时函数
+    this.setData({ activities: countDownArr })
+    setTimeout(this.countDown, 1000);
+  },
+  toAgree: function (e) {
+    let id = e.currentTarget.dataset.id;
+    let hots = this.data.hots
+    for (let i of hots) {
+      if (i.id == id) {
+        console.log('dddddddddddddddddd')
+        i.heart = !i.heart
+      }
+      this.setData({ hots })
+    }
+  },
   onLoad: function(options) {
+    let endList = [];
+    // 将活动的结束时间参数提成一个单独的数组，方便操作
+    activities.forEach(o => { endList.push(o) })
+    this.setData({ actEndTimeList: endList });
+    // 执行倒计时函数
+    this.countDown()
     this.stretch(350)
     var that = this
     wx.getSystemInfo({

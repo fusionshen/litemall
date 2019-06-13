@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import '/utils/ripples.min.wxss';
 
 .container {
   box-sizing: border-box;
