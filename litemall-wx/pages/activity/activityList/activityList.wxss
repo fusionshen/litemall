@@ -1,0 +1,145 @@
+
+.a-section {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  color: #333333;
+}
+
+.a-section .h {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.a-section .h .txt {
+  padding-right: 30rpx;
+  background-size: 16.656rpx 27rpx;
+  display: inline-block;
+  height: 36rpx;
+  font-size: 33rpx;
+  line-height: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.a-activity .b {
+  width: 750rpx;
+  padding: 0 0 48rpx 0;
+}
+
+.a-activity .b .list {
+  width: 750rpx;
+  white-space: nowrap;
+}
+
+.a-activity .b .item {
+  display: inline-block;
+  height: 580rpx;
+  width: 680.5rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+  border-bottom: 4px solid #f7f7f7;
+}
+
+.a-activity .b .wrap {
+  position: relative;
+}
+
+.a-activity .b .item:last-child {
+  margin-right: 30rpx;
+}
+
+.a-activity .b .img {
+  height: 387.5rpx;
+  width: 680.5rpx;
+  margin-top: 30rpx;
+  border-radius: 15rpx;
+}
+
+.a-activity .b .card-agree {
+  position: absolute;
+  z-index: 2;
+  left: 600rpx;
+  top: 350rpx;
+  display: flex;
+  align-items: center;
+}
+
+.a-activity .b .card-agree image {
+  width: 30px;
+  height: 25px;
+}
+
+.a-activity .b .text {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  overflow: hidden;
+  height: 244rpx;
+  width: 680.5rpx;
+}
+
+.a-activity .b .header {
+  width: 680.5rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.a-activity .b .name {
+  float: left;
+  display: block;
+  color: #333333;
+  font-size: 37rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.a-activity .b .desc {
+  width: 680.5rpx;
+  display: block;
+  color: #666666;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+}
+
+.a-activity .b .wws {
+  width: 680.5rpx;
+  display: flex;
+  color: #ab956d;
+}
+
+.a-activity .b .time {
+  font-size: 25rpx;
+  color: #999999;
+}
+
+.a-activity .b .location {
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  color: #999999;
+}
+
+.a-activity .b .state {
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  color: #3baec7;
+  border: 3rpx solid #3baec7;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  padding: 0 15rpx; 
+}
+
+.a-activity .b .no-state {
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  color: #999999;
+  background-color: #f0f0f0;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  padding: 0 15rpx;
+}

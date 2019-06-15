@@ -85,9 +85,19 @@ function showErrorToast(msg) {
   })
 }
 
+function formatContent(param,length) {
+  if(length === 0 || length === undefined || param.length <= length) {
+    return param
+  } else {
+    return param.substr(0,length) + '...'
+  }
+}
+
 module.exports = {
   formatTime,
   request,
   redirect,
-  showErrorToast
+  showErrorToast,
+  formatNumber,
+  formatContent
 }

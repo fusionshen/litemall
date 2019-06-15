@@ -1,0 +1,27 @@
+<view class="container">
+  <view class="a-section a-activity" wx:if="activities.length > 0">
+    <view class="b">
+        <view class="item" wx:for="{{activities}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <navigator url="../activityDetail/activityDetail?id={{item.id}}">
+          <view class="wrap">
+           <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
+            <view class='card-agree'  catchtap='toAgree' data-id='{{item.id}}'>
+          <image src="/static/images/{{item.heart?'red_heart.png':'white_heart.png'}}" class="ripple {{item.heart?'rubberBand':''}}"></image> 
+              </view>  
+             <view class="text">
+              <view class="header">
+                <text class="name">{{item.name}}</text>
+                <view class="{{item.state?'state':'no-state'}}">{{item.state?'免费报名':'报名截止'}}</view>
+              </view>
+              <text class="desc">{{item.content}}</text>
+              <view class="wws">
+                <view class="time">{{item.time + ' ' + item.day}}</view>
+                <view class="location">{{item.department}}</view>
+              </view>
+            </view>
+          </view>
+          </navigator>
+        </view>
+    </view>
+  </view>
+</view>

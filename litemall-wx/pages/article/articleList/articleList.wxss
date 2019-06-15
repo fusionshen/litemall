@@ -1,0 +1,150 @@
+
+.a-section {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+  color: #333333;
+}
+
+.a-section .h {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.a-section .h .txt {
+  padding-right: 30rpx;
+  background-size: 16.656rpx 27rpx;
+  display: inline-block;
+  height: 36rpx;
+  font-size: 33rpx;
+  line-height: 36rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.a-article .b {
+  width: 750rpx;
+  padding: 0 0 48rpx 0;
+}
+
+.a-article .b .list {
+  width: 750rpx;
+  white-space: nowrap;
+}
+
+.a-article .b .item {
+  display: inline-block;
+  height: 580rpx;
+  width: 680rpx;
+  margin-left: 30rpx;
+  overflow: hidden;
+  border-bottom: 4px solid #f7f7f7;
+}
+
+.a-article .b .wrap {
+  position: relative;
+}
+
+.a-article .b .item:last-child {
+  margin-right: 30rpx;
+}
+
+.a-article .b .img {
+  height: 370.5rpx;
+  width: 670rpx;
+  border-radius: 15rpx;
+  margin-top: 20rpx;
+}
+
+.a-article .b .card-agree {
+  position: absolute;
+  z-index: 2;
+  left: 600rpx;
+  top: 350rpx;
+  display: flex;
+  align-items: center;
+}
+
+.a-article .b .card-agree image {
+  width: 30px;
+  height: 25px;
+}
+
+.a-article .b .text {
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 160rpx;
+  margin-left: 15rpx;
+}
+
+.a-article .b .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.a-article .b .name {
+  float: left;
+  display: block;
+  color: #333333;
+  font-size: 37rpx;
+  font-family: PingFangSC-Medium;
+  margin-top: 20rpx;
+}
+
+.a-article .b .desc {
+  display: block;
+  color: #666666;
+  font-size: 30rpx;
+  font-family: PingFangSC-Regular;
+}
+
+.a-article .b .wws {
+  display: flex;
+  color: #ab956d;
+  align-items: center;
+}
+
+.a-article .b .time {
+  font-size: 25rpx;
+  color: #999999;
+}
+
+.a-article .b .location {
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  color: #999999;
+}
+
+
+.a-article .b image {
+  width: 20px;
+  height: 11px;
+  margin: 0 15rpx ;
+}
+
+.a-article .b .state {
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  color: #3baec7;
+  border: 3rpx solid #3baec7;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  padding: 0 15rpx; 
+}
+
+.a-article .b .no-state {
+  margin-left: 20rpx;
+  font-size: 25rpx;
+  color: #999999;
+  background-color: #f0f0f0;
+  line-height: 50rpx;
+  border-radius: 10rpx;
+  padding: 0 15rpx;
+}

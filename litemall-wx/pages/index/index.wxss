@@ -52,9 +52,10 @@
 .a-section .h {
   display: flex;
   flex-flow: row nowrap;
-  align-items: flex-start;
-  padding: 30rpx 30rpx;
+  align-items: center;
+  justify-content: center;
   height: 80rpx;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 .a-section .h .txt {
@@ -596,47 +597,39 @@ swiper-item{
 
 .time-swiper .item {
   border-radius: 15rpx;
-  position: relative;
   height: 80rpx;
   width: 700rpx;
   background: linear-gradient(to right, #e7cba1, #d3ae7a);
   margin-bottom: 10rpx;
   margin-left: 30rpx;
   margin-right: 30rpx;
-  padding-top: 10rpx;
 }
 
 .time-swiper .content {
-  margin-left: 10rpx;
-  margin-right: 5rpx;
   display: flex;
-  flex-direction: row;
   justify-content : space-around;
+  align-items: center;
 }
 
 .time-swiper .countdown-name {
-  margin-top: 7rpx;
   font-size: 36rpx;
   color: #92734c;
+  line-height: 80rpx;
 }
 
 .time-swiper .countdown-content {
-  margin-top: 10rpx;
   text-align: right;
 }
 
 .time-swiper .countdown-do {
-  margin-top: 10rpx;
   color: #92734c;
 }
 
 .time-swiper .countdown-text {
-  margin-top: 15rpx;
   color: #92734c;
 }
 
 .time-swiper .countdown-box {
-  display: inline-block;
   height: 40rpx;
   width: 40rpx;
   text-align: center;
@@ -648,7 +641,6 @@ swiper-item{
 }
 
 .time-swiper .countdown-do-text {
-  margin-top: 10rpx;
   color: #92734c;
 }
 

@@ -185,9 +185,6 @@ Page({
       });
     });
   },
-  timeFormat(param) {//小于10的格式化函数
-    return param < 10 ? '0' + param : param;
-  },
   contentFormat(time,o) {
     let day = parseInt(time / (60 * 60 * 24)) + 1
     if (day >= 2){
@@ -217,12 +214,12 @@ Page({
         let sec = parseInt(time % (60 * 60 * 24) % 3600 % 60);
         obj = {
           id: o.id,
-          name: o.name,
+          name:util.formatContent(o.name,5),
           content: this.contentFormat(time,o),
-          day: this.timeFormat(day),
-          hou: this.timeFormat(hou),
-          min: this.timeFormat(min),
-          sec: this.timeFormat(sec)
+          day: util.formatNumber(day),
+          hou: util.formatNumber(hou),
+          min: util.formatNumber(min),
+          sec: util.formatNumber(sec)
         }
       } else {//活动已结束，全部设置为'00'
         obj = {
@@ -246,7 +243,6 @@ Page({
     let hots = this.data.hots
     for (let i of hots) {
       if (i.id == id) {
-        console.log('dddddddddddddddddd')
         i.heart = !i.heart
       }
       this.setData({ hots })
@@ -256,7 +252,11 @@ Page({
     let endList = [];
     // 将活动的结束时间参数提成一个单独的数组，方便操作
     activities.forEach(o => { endList.push(o) })
-    this.setData({ actEndTimeList: endList });
+    this.setData({ actEndTimeList: endList })
+    //格式化热门活动内容
+    let hots = this.data.hots
+    hots.forEach(o => { o.content = util.formatContent(o.content,25) })
+    this.setData({ hots })
     // 执行倒计时函数
     this.countDown()
     this.stretch(350)

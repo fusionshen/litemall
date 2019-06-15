@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="a-section a-article" wx:if="articles.length > 0">
+    <view class="b">
+        <view class="item" wx:for="{{articles}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <navigator url="../articleDetail/articleDetail?id={{item.id}}">
+          <view class="wrap">
+            <!-- <view class='card-agree'  catchtap='toAgree' data-id='{{item.id}}'>
+          <image src="/static/images/{{item.heart?'red_heart.png':'white_heart.png'}}" class="ripple {{item.heart?'rubberBand':''}}"></image> 
+              </view>   -->
+             <view class="text">
+              <view class="header">
+                <text class="name">{{item.name}}</text>
+              </view>
+              <text class="desc">{{item.content}}</text>
+              <view class="wws">
+                <view class="time">{{item.time}}</view>
+                <view class="location">{{item.department}}</view>
+                <image src="/static/images/eye.png"></image> 
+                <text class="time">{{item.number}}</text> 
+              </view>
+            </view>
+            <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
+          </view>
+          </navigator>
+        </view>
+    </view>
+  </view>
+</view>

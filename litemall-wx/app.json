@@ -37,7 +37,12 @@
     "pages/groupon/grouponDetail/grouponDetail",
     "pages/groupon/grouponList/grouponList",
     "pages/coupon/coupon",
-    "pages/help/help"
+    "pages/help/help",
+    "pages/activity/activityList/activityList",
+    "pages/activity/activityDetail/activityDetail",
+    "pages/article/articleList/articleList",
+    "pages/article/articleDetail/articleDetail",
+    "pages/mine/index/index"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
@@ -60,19 +65,19 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/catalog/catalog",
+        "pagePath": "pages/activity/activityList/activityList",
         "iconPath": "static/images/tabbar_activity.png",
         "selectedIconPath": "static/images/tabbar_activity@selected.png",
         "text": "活动"
       },
       {
-        "pagePath": "pages/cart/cart",
+        "pagePath": "pages/article/articleList/articleList",
         "iconPath": "static/images/tabbar_chosen.png",
         "selectedIconPath": "static/images/tabbar_chosen@selected.png",
         "text": "健康精选"
       },
       {
-        "pagePath": "pages/ucenter/index/index",
+        "pagePath": "pages/mine/index/index",
         "iconPath": "static/images/tabbar_mine.png",
         "selectedIconPath": "static/images/tabbar_mine@selected.png",
         "text": "我的"
