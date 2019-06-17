@@ -33,7 +33,7 @@
     </swiper>
   </view> -->
   <view class="m-menu" wx:if="{{modules.length > 0}}">
-    <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{modules}}" wx:key="id">
+    <navigator class="item" url="{{item.linkUrl}}" wx:for="{{modules}}" wx:key="id">
       <image src="{{item.iconUrl}}" background-size="cover"></image>
       <text>{{item.name}}</text>
     </navigator>
@@ -41,7 +41,7 @@
 
     <swiper wx:if="{{activities.length > 0}}" class="time-swiper" circular="true" autoplay="true" vertical="true" interval="3000" duration="500">
         <block wx:for-items="{{activities}}" wx:key="{{id}}">
-          <navigator url="/pages/goods/goods?id={{item.id}}">
+          <navigator url="/pages/activity/activityDetail/activityDetail?id={{item.id}}">
             <swiper-item>
               <view class="item">
                 <view class="content">
@@ -76,7 +76,7 @@
     </view>
     <view class="b">
       <view class="item" wx:for="{{hots}}" wx:for-index="index" wx:for-item="item" wx:key="id">
-        <navigator  url="/pages/goods/goods?id={{item.id}}">
+        <navigator  url="/pages/activity/activityDetail/activityDetail?id={{item.id}}">
           <image class="img" src="{{item.picUrl}}"></image>
           <view class="right">
             <view class="text">

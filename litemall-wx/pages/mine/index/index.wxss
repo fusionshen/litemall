@@ -253,7 +253,7 @@ page {
 .row_row-item .left image {
   width: 35rpx;
   height:35rpx;
-  object-fit: fit;
+  object-fit: contain;
   display: inline-block;
   margin: 0 20rpx 0 10rpx;
 }

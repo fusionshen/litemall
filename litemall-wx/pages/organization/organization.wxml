@@ -1,0 +1,43 @@
+<view class="container">
+  <view class="cate-nav">
+    <scroll-view scroll-x="true" class="cate-nav-body" scroll-left="{{scrollLeft}}">
+      <view wx:for="{{navList}}" class="item {{ id == item.id ? 'active' : ''}}" wx:key="id" data-id="{{item.id}}" data-index="{{index}}" bindtap="switchCate">
+        <view class="name">{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view>
+  <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}};margin-top:90rpx;">
+      <view class="b" wx:for="{{organizationList}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+        <navigator  url="/pages/webview/webview?url={{item.linkUrl}}">
+          <view class="block">
+            <view class="left">
+               <image src="{{item.imgUrl}}"></image>
+               <text>{{item.name}}</text>
+            </view>
+            <view class="right">
+                <text class="desc">{{item.intro}}</text>
+                <text class="time">营业时间:{{item.time}}</text>
+                <text class="phone">联系方式:{{item.phone}}</text>
+                <view>{{item.address}}</view>
+                <!-- <view class="location">
+                  <image></image>
+                  <text>{{item.address}}</text>
+                </view> -->
+            </view>
+          </view>
+        </navigator>
+      </view>
+  </scroll-view>
+  </view>
+
+
+  
+    <!-- <view class="org-item">
+      <view class="b">
+        <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/goods/goods?id={{iitem.id}}" wx:for="{{organizationList}}" wx:key="id" wx:for-item="iitem" wx:for-index="iindex">
+          <image class="img" src="{{iitem.imgUrl}}" background-size="cover"></image>
+          <text class="name">{{iitem.name}}</text>
+          <text class="price">￥{{iitem.retailPrice}}</text>
+        </navigator>
+      </view>
+    </view> -->

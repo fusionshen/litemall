@@ -7,71 +7,73 @@ const modules = [
   {
     id: 1005000,
     name: '机构',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/ahq65ztxcq78df0tk1tn.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/ahq65ztxcq78df0tk1tn.png',
+    linkUrl: '/pages/organization/organization'
   },
   {
     id: 1005001,
     name: '诊疗',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qhu0dtud0htxworyo6eq.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qhu0dtud0htxworyo6eq.png',
   },
   {
     id: 1005002,
     name: '视频',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/4rpxngi4l8bice6vcay0.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/4rpxngi4l8bice6vcay0.png',
   },
   {
     id: 1008000,
     name: '导航',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qnfxpjnov6io7t8nugsr.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qnfxpjnov6io7t8nugsr.png',
   },
   {
     id: 1010000,
     name: '地图',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qcljvbhdf5f27hmubg1o.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/qcljvbhdf5f27hmubg1o.png',
   },
   {
     id: 1011000,
     name: '生活',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/0k2ozl7v5s3wytkj2o3k.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/0k2ozl7v5s3wytkj2o3k.png',
   },
   {
     id: 1012000,
     name: '智慧党建',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/c9h6l36wvcr7h9klw0rz.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/c9h6l36wvcr7h9klw0rz.png',
   },
   {
     id: 1013001,
     name: '志愿服务',
-    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/rx5rgbpyjz6da98ee5nk.png'
+    iconUrl: 'http://47.103.46.66:88/wx/storage/fetch/rx5rgbpyjz6da98ee5nk.png',
   }];
+
 
 let activities = [
   {
-    id: 1,
+    id: 1006010,
     name: '健康大讲堂',
     content: '十点截止',
     actEndTime: '2019/06/14 10:00:58'
   },
   {
-    id: 2,
+    id: 1006013,
     name: '医疗大见面',
     content: '十点截止',
     actEndTime: '2019/06/11 10:00:47'
   },
   {
-    id: 3,
+    id: 1006014,
     name: '飞翔的天空',
     content: '十点截止',
     actEndTime: '2019/06/16 10:00:39'
   },
   {
-    id: 4,
+    id: 1006051,
     name: '入驻见面会',
     content: '十点截止',
     actEndTime: '2019/06/17 10:00:29'
   },
   {
-    id: 5,
+    id: 1009009,
     name: '临时会议',
     content: '十点截止',
     actEndTime: '2019/06/12 18:00:47'
@@ -79,7 +81,7 @@ let activities = [
 
 const hots = [
   {
-    id: 1,
+    id: 1009009,
     name: '瑜伽大讲堂',
     content: '知名瑜伽教练现场带您体验瑜伽的奥秘',
     time: '05/15',
@@ -90,7 +92,7 @@ const hots = [
     picUrl: 'http://47.103.46.66:88/wx/storage/fetch/xn09jwhay5hruighoadu.png'
   },
   {
-    id: 2,
+    id: 1009012,
     name: '欢乐园区行',
     content: '园区导游带领闵行一中学生参观新虹桥医学中心，了解园区风貌',
     time: '05/20',
@@ -101,7 +103,7 @@ const hots = [
     picUrl: 'http://47.103.46.66:88/wx/storage/fetch/jqzqerejo7ot12uvi5bv.png'
   },
   {
-    id: 3,
+    id: 1009013,
     name: '我只是个测试',
     content: '我只是个测试用例，用于测试首页活动列表',
     time: '05/15',

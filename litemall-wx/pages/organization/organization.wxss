@@ -1,0 +1,99 @@
+page {
+  height: 100%;
+  min-height: 100%;
+  background: #f6f6f6;
+}
+
+.container {
+  background: #f6f6f6;
+}
+
+.cate-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #f6f6f6;
+}
+
+.cate-nav-body {
+  width: 100%;
+  padding-left: 5%;
+  height: 84rpx;
+  white-space: nowrap;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  font-family: PingFangSC-Medium;
+}
+
+.cate-nav .item {
+  display: inline-block;
+  height: 84rpx;
+  min-width: 130rpx;
+  padding: 0 15rpx;
+}
+
+.cate-nav .item .name {
+  display: block;
+  height: 84rpx;
+  padding: 10rpx 20rpx 0 20rpx;
+  line-height: 84rpx;
+  color: #999999;
+  font-size: 35rpx;
+  width: auto;
+  letter-spacing: 1rpx;
+}
+
+.cate-nav .item.active .name {
+  padding: 10rpx 0 0 0;
+  font-size: 40rpx;
+  color: #3baec7;
+  border-bottom: 2px solid #3baec7;
+}
+
+.b {
+  width: 98%;
+  margin: 30rpx auto;
+  overflow: hidden;
+  background-color: #ffffff;
+  border-radius: 40rpx;
+}
+ 
+.b .block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.b .block .left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.b .block .left image {
+  width: 90%;
+  margin: 0 auto;
+  height: 100rpx;
+  object-fit: contain;
+}
+
+.b .block .left text {
+  color: #333333;
+  font-size: 37rpx;
+  font-family: PingFangSC-Medium;
+}
+
+.b .block .right {
+  flex: 2;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  /* align-items: center; */
+}
+
+

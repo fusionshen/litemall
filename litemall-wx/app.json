@@ -42,7 +42,9 @@
     "pages/activity/activityDetail/activityDetail",
     "pages/article/articleList/articleList",
     "pages/article/articleDetail/articleDetail",
-    "pages/mine/index/index"
+    "pages/mine/index/index",
+    "pages/organization/organization",
+    "pages/webview/webview"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
