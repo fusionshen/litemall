@@ -27,7 +27,8 @@ public class LitemallOrgService {
         return litemallOrgMapper.selectByPrimaryKey(id);
     }
 
-    public List<LitemallOrg> queryByOrderStatus(Integer type, Integer page, Integer limit, String sort, String order) {
+    public List<LitemallOrg> queryByOrgType(Integer type, Integer page, Integer limit, String sort, String order) {
+        type=1;
         LitemallOrgExample example = new LitemallOrgExample();
         example.setOrderByClause(LitemallOrg.Column.addTime.desc());
         LitemallOrgExample.Criteria criteria = example.or();
