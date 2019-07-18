@@ -76,8 +76,14 @@ export default {
         password: 'admin123'
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [
+          { required: true, message: '管理员账户不允许为空', trigger: 'blur' },
+          { validator: validateUsername, trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: '管理员密码不允许为空', trigger: 'blur' },
+          { validator: validatePassword, trigger: 'blur' }
+        ]
       },
       passwordType: 'password',
       capsTooltip: false,
